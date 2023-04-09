@@ -1,7 +1,9 @@
 ## About
 
 ```
-This project is a quick code quiz that has a countdown timer and a high score tracker. Basis of CSS is pulled from code example from class, 04, 26 Local Storage Todo's. Edits have been made to better suit quiz instead of todo list.
+This project is a quick code quiz that has a countdown timer and a high score tracker. 
+Basis of CSS is pulled from code example from class-repo, 04, 26 Local Storage Todo's.
+Edits have been made to better suit quiz instead of todo list.
 ```
 ## User Story
 
