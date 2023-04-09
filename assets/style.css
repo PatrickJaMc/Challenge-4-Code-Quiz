@@ -3,8 +3,13 @@ body {
   background-color: #eff5f8;
   color: #001b44;
 }
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-h1 {
+.start-page {
   text-align: center;
 }
 
@@ -27,7 +32,8 @@ h1 {
   font-size: 30px;
 }
 
-li {
+.btn {
+  width: 100%;
   height: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -40,6 +46,10 @@ li {
 
 .score {
   font-size: 30px;
+}
+
+.hidden{
+  display: none;
 }
 
 

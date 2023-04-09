@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <title>Code Quiz</title>
-  </head>
-  <body>
-    <div class="card">
-      <h1>Code Quiz</h1>
-        <p class="timer">Timer:</p>
-        <p class="question">Question: </p>
-          <ul>
-            <li>Answer</li>
-            <li>Answer</li>
-            <li>Answer</li>
-            <li>Answer</li>
-          </ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  <title>Code Quiz</title>
+</head>
+
+<body>
+  <div class="card">
+    <header>
+      <p class="timer">Timer:</p>
       <p class="score">Score:</span></p>
+    </header>
+
+    <div class="start-page" id="start-page">
+      <h1>Code Quiz</h1>
+      <button id="start">Start Game</button>
+    </div>
+
+    <div id="quiz-page" class="hidden">
+      <p class="question " id="question">Question: </p>
+      <div>
+        <button id="option1" class="btn"></button>
+        <button id="option2" class="btn"></button>
+        <button id="option3" class="btn"></button>
+        <button id="option4" class="btn"></button>
+      </div>
+    </div>
+
+
   </div>
-    <script src="./assets/script.js"></script>
-  </body>
+  <script src="./assets/script.js"></script>
+</body>
+
 </html>
