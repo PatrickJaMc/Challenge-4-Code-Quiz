@@ -1,47 +1,150 @@
-// Need to add countdown timer
-var startBtn = document.getElementById('start');
-var question = document.getElementById('question');
-var startPage = document.getElementById('start-page');
-var quizPage = document.getElementById('quiz-page');
-var option1 = document.getElementById('option1');
-var option2 = document.getElementById('option2');
-var option3 = document.getElementById('option3');
-var option4 = document.getElementById('option4');
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
+var startGameBtn = document.getElementById('start');
+var startPage = document.getElementById('startPage');
+var quiz = document.getElementById('quiz');
+const questionElement = document.getElementById('question');
+const answerButtons = document.getElementById('answerButtons');
+const nextBtn = document.getElementById('nextBtn')
 
-function start() {
-    // when start is clicked, 
-    // hide the start page
-    startPage.classList.add('hidden');
-    // start the timer
-    // show quiz page
-    quizPage.classList.remove('hidden')
-    // display the question
-    questionDisplay()
-}
+let currentQuestionIndex = 0;
+let score = 0;
 
-function questionDisplay() {
-    // display the question
-    question.textContent = 'Question: Text Text text'
-    // add content to the quiz buttons
-    option1.textContent = 'Option  1';
-    option2.textContent = 'Option  2';
-    option3.textContent = 'Option  3';
-    option4.textContent = 'Option  4';
-}
+//Questions for quiz
 
-function checkAnswer(){
-    
+const questions = [
+    {
+        question: "Who won Super Bowl 57?",
+        answers: [
+            {text: "Chiefs", correct: true},
+            {text: "Bengals", correct: false},
+            {text: "Bills", correct: false},
+            {text: "Eagles", correct: false},
+
+        ]
+    },
+    {
+        question: "What year did the Chiefs win their firsts Super Bowl?",
+        answers: [
+            {text: "2018", correct: false},
+            {text: "1982", correct: false},
+            {text: "1970", correct: true},
+            {text: "2023", correct: false},
+
+        ]
+    },
+    {
+        question: "What was the first college in America?",
+        answers: [
+            {text: "Columbia", correct: false},
+            {text: "KU", correct: false},
+            {text: "Yale", correct: false},
+            {text: "Harvard", correct: true},
+
+        ]
+    },
+    {
+        question: "Who invented the Analytical Engine?",
+        answers: [
+            {text: "Charles Babbage", correct: true},
+            {text: "Andy Reid", correct: false},
+            {text: "Yoda", correct: false},
+            {text: "Peter Griffin", correct: false},
+
+        ]
+    }
+];
+
+//Functions
+///////////////////////////
+function startQuiz(){
+    resetState();
+    currentQuestionIndex = 0;
+    score = 0;
+    nextBtn.innerHTML = 'Next';
+    showQuestion();
 }
-// add event listener that runs the start function
-startBtn.addEventListener('click', start);
+///////////////////////////////
+//////////////////////////////
+function showQuestion(){
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + '. ' + currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerHTML = answer.text;
+        button.classList.add('btn');
+        answerButtons.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer);
+    });
+}
+////////////////////////////////////
+/////////////////////////////////////
+function resetState(){
+    nextBtn.style.display = 'none';
+    while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+/////////////////////////////////////
+/////////////////////////////////////
+function selectAnswer(e){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === 'true';
+    if(isCorrect){
+        selectedBtn.classList.add('correct');
+        score+= 100; 
+    } else {
+        selectedBtn.classList.add('incorrect');
+    }
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === 'true'){
+            button.classList.add('correct');
+        }
+        button.disabled = true;
+    });
+    nextBtn.style.display = 'block';
+}
+////////////////////////
+//////////////////////
+function showScore(){
+    /*resetState();*/
+    questionElement.innerHTML = `Your score: ${score} out of ${questions.length + '00'}`;
+    nextBtn.innerHTML = 'Play Again';
+    nextBtn.style.display = 'block';
+}
+////////////////////////
+////////////////////////
+function handleNextButton(){
+    currentQuestionIndex++
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    } else {
+        showScore();
+    }
+}
+/////////////////////////////
+///////////////////////////
+nextBtn.addEventListener('click', () =>{
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    } else {
+        startQuiz();
+    }
+})
+
+
+startQuiz();
+
+
+
+
+
+
+
+//EVENT LISTENERS//
+
+

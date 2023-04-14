@@ -1,10 +1,11 @@
+# 04 Web APIs: Code Quiz
 ## About
 
 ```
-This project is a quick code quiz that has a countdown timer and a high score tracker. 
-Basis of CSS is pulled from code example from class-repo, 04, 26 Local Storage Todo's.
-Edits have been made to better suit quiz instead of todo list.
+This is a quick quiz utilizing HTML, CSS, and Javascript while also use API's.
+ A question will appear, user will select answer, and score will be gained and tracked per correct answer.
 ```
+
 ## User Story
 
 ```
@@ -27,3 +28,4 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
+```
